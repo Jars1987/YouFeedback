@@ -56,9 +56,8 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
   clientID: keys.facebookClientID,
   clientSecret: keys.facebookClientSecret,
-  callbackURL: '/auth/facebook/callback',
-  profileFields: ['id', 'emails', 'name'],
-  proxy: true,
+  callbackURL: 'https://youfeedback.herokuapp.com/auth/facebook',
+  profileFields: ['id', 'emails', 'name']
 }, async (accessToken, refreshToken, profile, done) => {
   try {
     console.log(profile)
