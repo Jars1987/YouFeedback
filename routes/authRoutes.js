@@ -17,7 +17,10 @@ const router         = express.Router();
  
   router.get(
     '/auth/google/callback',
-    passport.authenticate('google')
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/surveys')
+    }
   );
   router.get('/auth/facebook/callback',
    passport.authenticate('facebook')
@@ -25,7 +28,7 @@ const router         = express.Router();
 
    router.get('/api/logout', (req, res) => {
      req.logout();
-     res.send('You are logged Out');
+     res.redirect('/');
    })
 
   router.get('/api/current_user', (req, res) => {

@@ -6,7 +6,8 @@ const keys = require('./config/keys');
 
 require('./services/passport');
 
-const googleAuthRoutes = require('./routes/authRoutes')
+const googleAuthRoutes = require('./routes/authRoutes');
+const billingRoutes = require('./routes/billingRoutes');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
@@ -22,6 +23,8 @@ db.once('open', () => {
 
 const app = express();
 
+app.use(express.json());
+
 //tell express to use cookies and sessions
 app.use(
   cookieSession({
@@ -34,10 +37,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', googleAuthRoutes);
+app.use('/', billingRoutes);
 
-app.get('/', (req, res) => {
-  res.send('Welcome!')
-})
+if(process.env.NODE_ENV === 'production'){
+  //express will serve up production assets
+  app.use(express.static('client/biuld'))
+
+  //express will serve up index.html file if it doesn't recognise the route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  });
+
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, ()=>{

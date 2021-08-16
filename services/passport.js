@@ -24,7 +24,6 @@ passport.use(new GoogleStrategy({
   proxy: true,
 }, async (acessToken, refreshToken, profile, done) => {
   try {
-    console.log(profile)
     const existingUser = await User.findOne({ $or: [
       { 'google.id': profile.id },
       { 'email': profile.emails[0].value }
@@ -58,9 +57,9 @@ passport.use(new FacebookStrategy({
   clientSecret: keys.facebookClientSecret,
   callbackURL: 'https://youfeedback.herokuapp.com/auth/facebook',
   profileFields: ['id', 'emails', 'name']
+  //To have acess to it you also need to go to graph API on facebook devoloper tools and add permision to email
 }, async (accessToken, refreshToken, profile, done) => {
   try {
-    console.log(profile)
     const existingUser = await User.findOne({ $or: [
       { 'facebook.id': profile.id },
       { 'email': profile.emails[0].value }
