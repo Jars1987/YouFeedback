@@ -8,7 +8,7 @@ import { fetchUser } from '../actions';
 
 const App = (props) => {
 
-  const Dashboard = () => <h2>Dashboardr</h2>
+  const Dashboard = () => <h2>Dashboard</h2>
   const SurveyNew = () => <h2>SurveyNew</h2>
 
   const dispatch = useDispatch();
