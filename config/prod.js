@@ -6,7 +6,7 @@ module.exports = {
   facebookClientSecret: process.env.FACEBOOK_CLIENT_SECRET,
   facebookClientID: process.env.FACEBOOK_CLIENT_ID,
   StripePublishableKey: process.env.StripePublishableKey,
-  StripeSecretKey: process.env.StripeSecretKey
+  StripeSecretKey: process.env.StripeSecretKey,
+  sendGridKey: process.env.sendGridKey,
+  redirectDomain: process.env.REDIRECT_DOMAIN
 };
-
-//sk_test_51JNe7HHT7L5EGTuPF58UEqbVyZyfrFZhZ5YSgUPFJyyrgu4GhNS3IEjywzqcehkJB850WbZMWCMWBp5ysEO5O5Br00exfkhPiI
